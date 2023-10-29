@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piracy Auditor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #007BFF;
+        }
+
+        h3 {
+            color: #004085;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        ol {
+            list-style: decimal;
+            margin-left: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007BFF;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .usage-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .usage-section h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Piracy Auditor</h1>
+        <p>Detect Plagiarism in Text and Document Files</p>
+    </header>
+
+    <div class="container">
+        <h2>Setup</h2>
+        <p>The first thing to do is to clone the repository:</p>
+        <pre><code>$ git clone https://github.com/neeraj779/Piracy_Auditor.git
+$ cd Piracy_Auditor</code></pre>
+
+        <p>Create a virtual environment to install dependencies in and activate it:</p>
+        <pre><code>$ virtualenv venv
+$ source venv/bin/activate</code></pre>
+
+        <p>Then install the dependencies:</p>
+        <pre><code>(venv)$ pip install -r requirements.txt</code></pre>
+        <p>Note the <code>(venv)</code> in front of the prompt. This indicates that this terminal session operates in a virtual environment set up by <code>virtualenv</code>.</p>
+
+        <p>Once <code>pip</code> has finished downloading the dependencies:</p>
+        <pre><code>(venv)$ python manage.py runserver</code></pre>
+        <p>And navigate to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>.</p>
+    </div>
+
+    <div class="container usage-section">
+        <h2>Usage</h2>
+
+        <div class="usage-section">
+            <h3>Text Plagiarism Detection</h3>
+            <p>The web application allows you to detect plagiarism in text files. To use this feature:</p>
+            <ol>
+                <li>Click on the "Text" option on the navigation menu.</li>
+                <li>Enter text content you want to check for plagiarism.</li>
+                <li>The system will analyze the text and show you the results, indicating if any instances of plagiarism are detected.</li>
+            </ol>
+        </div>
+
+        <div class="usage-section">
+            <h3>File Plagiarism Detection</h3>
+            <p>The Piracy Auditor can also detect plagiarism in doc or text files. To use this feature:</p>
+            <ol>
+                <li>Click on the "File" option on the navigation menu.</li>
+                <li>Upload a document file (e.g., txt, DOCX) that you want to check for plagiarism.</li>
+                <li>The system will process the document and display the results, showing if any cases of plagiarism are found.</li>
+            </ol>
+        </div>
+
+        <div class="usage-section">
+            <h3>Text Comparison</h3>
+            <p>The Piracy Auditor also offers text comparison functionality to compare two texts for similarities:</p>
+            <ol>
+                <li>Click on the "Compare" option on the navigation menu.</li>
+                <li>Enter the two texts you want to compare in the provided text input fields.</li>
+                <li>Click the "Compare" button, and the system will analyze the texts and display the similarities, if any.</li>
+            </ol>
+        </div>
+
+        <div class="usage-section">
+            <h3>File Comparison</h3>
+            <p>Additionally, you can compare two document files for similarities:</p>
+            <ol>
+                <li>Click on the "Compare" option on the navigation menu.</li>
+                <li>Upload two document files you wish to compare.</li>
+                <li>The system will process the files and show any similarities found between them.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

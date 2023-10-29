@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piracy Auditor | Result</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+
+      .result-div {
+        margin: 20px auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #fdfdfd;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .result-div h3 {
+        color: #2a9d8f;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #2a9d8f;
+        padding-bottom: 10px;
+      }
+
+      .output-list-1 {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .output-list-1 li {
+        margin-bottom: 10px;
+      }
+
+      .output-list-1 a {
+        color: #2a9d8f;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .output-list-1 a:hover {
+        border-bottom: 2px solid #2a9d8f;
+      }
+
+      .output-per-tot {
+        font-size: 30px;
+        color: #2a9d8f;
+        margin-top: 10px;
+        animation: scaleIn 1s ease-out;
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .result-2 p {
+        color: #2a9d8f;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+      }
+
+      .result-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .result-2 .btn-custom {
+        margin-top: 20px;
+      }
+
+      .btn-custom {
+        background-color: #2a9d8f;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .btn-custom:hover {
+        background-color: #1a7d6d;
+      }
+
+      /* Circular Progress Styling */
+      .circular-progress {
+        display: inline-block;
+        position: relative;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background-color: #f1f1f1;
+      }
+
+      .percentage-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 32px;
+        font-weight: bold;
+        color: #2a9d8f;
+        z-index: 1;
+      }
+
+      .progress-ring {
+        width: 100%;
+        height: 100%;
+      }
+
+      .progress-ring-circle {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        stroke-dasharray: 283;
+        transition: stroke-dashoffset 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container result-div">
+      <div class="row">
+        <div class="col-md-6 result-1">
+          <h3>Results</h3>
+          <ul class="output-list-1">
+            {% for url, percentage in link.items %}
+            <li><a href="{{ url }}">{{ url }}</a> - {{  percentage|floatformat:2 }}%</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-md-6 result-2">
+          <h3>Plagiarism Detection</h3>
+          <div class="circular-progress">
+            <svg class="progress-ring" viewBox="0 0 100 100">
+              <circle
+                class="progress-ring-circle"
+                cx="50"
+                cy="50"
+                r="45"
+                fill="transparent"
+                stroke="#2a9d8f"
+                stroke-width="5"
+                stroke-dasharray="283"
+                stroke-dashoffset="283"
+              ></circle>
+            </svg>
+            <div class="percentage-text">
+              <span class="output-per-tot">{{ percent }}%</span>
+            </div>
+          </div>
+          <p>Plagiarized</p>
+          <a class="btn-custom" href="{% url 'file' %}">Try Another</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container result-2">
+      <h3>Graph</h3>
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+      var labels = [{% for url, _ in link.items %}"{{ url }}",{% endfor %}];
+      var percentages = [{% for _, percentage in link.items %}{{ percentage }},{% endfor %}];
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Percentage',
+            data: percentages,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+        const progressRingCircle = document.querySelector(".progress-ring-circle");
+        const outputPerTot = document.querySelector(".output-per-tot");
+        const percentage = {{ percent }};
+        const circumference = 283;
+
+        function setProgress() {
+          const offset = circumference - (percentage / 100) * circumference;
+          progressRingCircle.style.strokeDashoffset = offset;
+          outputPerTot.textContent = `${percentage}%`;
+        }
+
+        setProgress();
+    </script>
+  </body>
+</html>

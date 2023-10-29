@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piracy Auditor | File</title>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="{% url 'text' %}">Piracy Auditor</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" style="margin-left: 0">
+          <li class="nav-item nav-one">
+            <a class="nav-link" href="{% url 'file' %}"
+              >Documents<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item nav-two">
+            <a class="nav-link" href="{% url 'text' %}">Text</a>
+          </li>
+          <li class="nav-item nav-two">
+            <a class="nav-link" href="{% url 'compare' %}">Compare Documents</a>
+          </li>
+          <li class="nav-item nav-two">
+            <a class="nav-link" href="{% url 'docs' %}">Documentation </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container content-1">
+      <div class="col-md-6 offset-3 text-content">
+        <p class="heading text-center text-gradient overlay_title waviy">
+          <span class="text-gradient" style="--i: 1">Choose</span>
+          <span class="text-gradient" style="--i: 2">a</span>
+          <span class="text-gradient" style="--i: 3">docx</span>
+          <span class="text-gradient" style="--i: 4">or</span>
+          <span class="text-gradient" style="--i: 5">txt</span>
+          <span class="text-gradient" style="--i: 6">file</span>
+          <span class="text-gradient" style="--i: 7">for</span>
+          <span class="text-gradient" style="--i: 8">Plagiarism</span>
+          <span class="text-gradient" style="--i: 9">detection</span>
+        </p>
+
+        <div class="tab-content-1">
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="file-input-ws"
+              role="tabpanel"
+              aria-labelledby="file-tab"
+            >
+              <form
+                id="form2-ws"
+                action="/file-test-result/"
+                enctype="multipart/form-data"
+                method="POST"
+              >
+                {% csrf_token %}
+                <label for="id_docfile" id="file-label">
+                  <i class="fas fa-cloud-upload-alt file-icon"></i>
+                  <p class="file-text">
+                    Drag and drop your file here or click to browse
+                  </p>
+                  <input
+                    id="id_docfile"
+                    required
+                    type="file"
+                    name="docfile"
+                    accept=".doc, .docx, .txt"
+                  />
+                </label>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 center">
+          <button
+            type="submit"
+            form="form2-ws"
+            id="submit-button-2"
+            class="button"
+            role="button"
+          >
+            Run Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"
+    ></script>
+  </body>
+</html>
